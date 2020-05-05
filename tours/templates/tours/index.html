@@ -10,7 +10,7 @@
 <div class="container mt-3">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" data-test="logo" href="#">{{ title }}</a>
+      <a class="navbar-brand" data-test="logo" href="/">{{ title }}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -18,7 +18,7 @@
         <ul class="navbar-nav" data-test="navigation">
           {% for key, value in departures.items %}
             <li class="nav-item active">
-              <a class="nav-link" href="#" data-test="navlink">{{ value }}</a>
+              <a class="nav-link" href="{{ key }}" data-test="navlink">{{ value }}</a>
             </li>
           {% endfor %}
         </ul>
@@ -36,14 +36,14 @@
     <!-- CARDS -->
 
     <div class="row mt-5" data-test="cards">
-      {% for key, value in tours.items %}
+      {% for key, value in index_tours.items %}
         <div class="col-4" data-test="card">
           <div class="card mb-3" >
             <img src="{{ value.picture }}" class="card-img-top img-fluid" data-test="picture">
             <div class="card-body">
               <h5 class="card-title">{{value.title}}</h5>
              <p class="card-text">{{ value.description | truncatechars:100 }}</p>
-                <a href="" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+                <a href="tour/{{ key }}" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
             </div>
           </div>
         </div>
