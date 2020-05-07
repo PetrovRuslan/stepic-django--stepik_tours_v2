@@ -24,15 +24,22 @@ class MainView(View):
 class DepartureView(View):
     def get(self, request, departure, *args, **kwargs):
         departure_value_tours = 0
-        departures_dict = {}
+        current_departures_dict = {}
+        price_list = []
+        nights_list = []
         if departure not in departures:
             raise Http404
         else:
             for key, value in tours.items():
                 if value['departure'] == departure:
                     departure_value_tours = departure_value_tours + 1
-                    departures_dict[key] = value
+                    current_departures_dict[key] = value
             departure = departures[departure]
+        for item in current_departures_dict:
+            price_list.append(current_departures_dict[item]['price'])
+            nights_list.append(current_departures_dict[item]['nights'])
+        price_list.sort()
+        nights_list.sort()
         return render(
             request, 'tours/departure.html', context={
                 'title': title,
@@ -41,7 +48,9 @@ class DepartureView(View):
                 'departures': departures,
                 'departure': departure,
                 'departure_value_tours': departure_value_tours,
-                'departures_dict': departures_dict,
+                'current_departures_dict': current_departures_dict,
+                'price_list': price_list,
+                'nights_list': nights_list,
             }
         )
 
