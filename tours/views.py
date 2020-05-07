@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse, Http404
+from django.http import Http404
 from django.views import View
 from data import *
 import random
+
 
 class MainView(View):
     def get(self, request, *args, **kwargs):
@@ -20,6 +21,7 @@ class MainView(View):
                 'index_tours': index_tours,
             }
         )
+
 
 class DepartureView(View):
     def get(self, request, departure, *args, **kwargs):
@@ -53,6 +55,7 @@ class DepartureView(View):
                 'nights_list': nights_list,
             }
         )
+
 
 class TourView(View):
     def get(self, request, id, *args, **kwargs):
