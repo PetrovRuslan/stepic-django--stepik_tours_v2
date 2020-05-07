@@ -8,7 +8,6 @@
 <body>
 
 <div class="container mt-3">
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">{{ title }}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +38,7 @@
 
 
     <h1 class="display-5 mt-4">Летим <span data-test="from">{{ departure }}</span></h1>
-    <p class="mb-4" >Найдено <span data-test="tourcount">{{ departure_value_tours }}</span> туров, от <span data-test="pricemin">26000</span> до <span data-test="pricemax">84600</span> и от <span data-test="nightsmax">4</span> ночей до <span data-test="nightsmax">15</span> ночей</p>
+    <p class="mb-4" >Найдено <span data-test="tourcount">{{ departure_value_tours }}</span> туров, от <span data-test="pricemin">{{ price_list.0 }}</span> до <span data-test="pricemax">{{ price_list | last }}</span> и от <span data-test="nightsmax">{{ nights_list.0 }}</span> ночей до <span data-test="nightsmax">{{ nights_list | last }}</span> ночей</p>
     <!-- HERO -->
 
 
@@ -47,7 +46,7 @@
     <!-- CARDS -->
 
       <div class="row mt-5" data-test="cards">
-        {% for key, value in departures_dict.items %}
+        {% for key, value in current_departures_dict.items %}
           <div class="col-4" data-test="card">
             <div class="card mb-3" >
               <img src="{{ value.picture }}" class="card-img-top img-fluid" data-test="picture">
